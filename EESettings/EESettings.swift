@@ -9,7 +9,7 @@
 import UIKit
 class SettingHost:NSObject{
     
-    static func hostView() -> EESettings{
+    static func setHostView() -> EESettings{
         
         let settingsView = NSBundle.mainBundle().loadNibNamed("EESettings", owner: self, options: nil).first as! EESettings
         settingsView.layer.cornerRadius = 20
@@ -17,19 +17,21 @@ class SettingHost:NSObject{
         settingsView.layer.zPosition = 10000;
         settingsView.backgroundColor = UIColor(red:0.24, green:0.75, blue:1, alpha:1)
         
-        #if DEBUG
-            
-            let window = UIApplication.sharedApplication().keyWindow
-            window?.addSubview(settingsView)
-            
-            let panRecognizer = UIPanGestureRecognizer(target:settingsView, action:"detectPan:")
-            settingsView.addGestureRecognizer(panRecognizer)
-            settingsView.label!.text = settingsView.getHost()
-            
-            NSNotificationCenter.defaultCenter().addObserver(settingsView, selector:"renewSettings", name:
-                UIApplicationDidBecomeActiveNotification, object: nil)
-            
-        #endif
+        //     #if DEBUG
+        
+        let window = UIApplication.sharedApplication().keyWindow
+        
+        print(window)
+        window?.addSubview(settingsView)
+        
+        let panRecognizer = UIPanGestureRecognizer(target:settingsView, action:"detectPan:")
+        settingsView.addGestureRecognizer(panRecognizer)
+        settingsView.label!.text = settingsView.readHost()
+        
+        NSNotificationCenter.defaultCenter().addObserver(settingsView, selector:"renewSettings", name:
+            UIApplicationDidBecomeActiveNotification, object: nil)
+        
+        //    #endif
         return settingsView
         
     }
@@ -39,9 +41,9 @@ class EESettings:UIView {
     
     var lastLocation:CGPoint = CGPointMake(0, 0)
     @IBOutlet var label:UILabel?
-    func getHost() -> String{
+    func readHost() -> String{
         
-        let defaultHost = "10.10.1.29:9001"
+        let defaultHost = "localhost"
         let defaults = NSUserDefaults.standardUserDefaults()
         
         let selected_host = defaults.objectForKey("selected_host") as? String ?? String()
@@ -60,7 +62,7 @@ class EESettings:UIView {
     }
     func renewSettings(){
         
-        label!.text = getHost()
+        label!.text = readHost()
         
     }
     required init?(coder aDecoder: NSCoder) {

@@ -43,21 +43,21 @@
 			<array>
 				<string>10.10.2.1</string>
 				<string>10.10.2.43</string>
-				<string>10.10.2.29</string>
-				<string>10.10.10.29:9001</string>
-				<string>10.10.3.29:9001</string>
 				<string>10.10.2.29:9001</string>
+				<string>10.10.10.29</string>
+				<string>10.10.3.29:9001</string>
+				<string>localhost</string>
 				<string>10.10.1.29:9001</string>
 			</array>
 			<key>Titles</key>
 			<array>
-				<string>MELEK</string>
-				<string>BETÜL</string>
-				<string>29 Makinası</string>
-				<string>BAŞAR</string>
-				<string>ALİCAN</string>
-				<string>THY Test</string>
-				<string>THY Production</string>
+				<string>Server 1</string>
+				<string>Server 2</string>
+				<string>Main Server</string>
+				<string>Erk&apos;s Laptop</string>
+				<string>Obama&apos;s Workstation</string>
+				<string>Localhost</string>
+				<string>ISS Server</string>
 			</array>
 		</dict>
 		<dict>
