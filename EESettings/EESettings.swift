@@ -7,7 +7,8 @@
 //
 
 import UIKit
-class SettingHost:NSObject{
+class Preferences:NSObject{
+  
     
     static func setHostView() -> EESettings{
         
@@ -17,21 +18,20 @@ class SettingHost:NSObject{
         settingsView.layer.zPosition = 10000;
         settingsView.backgroundColor = UIColor(red:0.24, green:0.75, blue:1, alpha:1)
         
-        //     #if DEBUG
-        
-        let window = UIApplication.sharedApplication().keyWindow
-        
-        print(window)
-        window?.addSubview(settingsView)
-        
-        let panRecognizer = UIPanGestureRecognizer(target:settingsView, action:"detectPan:")
-        settingsView.addGestureRecognizer(panRecognizer)
-        settingsView.label!.text = settingsView.readHost()
-        
-        NSNotificationCenter.defaultCenter().addObserver(settingsView, selector:"renewSettings", name:
-            UIApplicationDidBecomeActiveNotification, object: nil)
-        
-        //    #endif
+        #if DEBUG
+            
+            let window = UIApplication.sharedApplication().keyWindow
+            print(window)
+            window?.addSubview(settingsView)
+            
+            let panRecognizer = UIPanGestureRecognizer(target:settingsView, action:"detectPan:")
+            settingsView.addGestureRecognizer(panRecognizer)
+            settingsView.label!.text = EESettings.readHost()
+            
+            NSNotificationCenter.defaultCenter().addObserver(settingsView, selector:"renewSettings", name:
+                UIApplicationDidBecomeActiveNotification, object: nil)
+            
+        #endif
         return settingsView
         
     }
@@ -40,8 +40,10 @@ class SettingHost:NSObject{
 class EESettings:UIView {
     
     var lastLocation:CGPoint = CGPointMake(0, 0)
+    
     @IBOutlet var label:UILabel?
-    func readHost() -> String{
+    
+    static func readHost() -> String{
         
         let defaultHost = "localhost"
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -62,7 +64,7 @@ class EESettings:UIView {
     }
     func renewSettings(){
         
-        label!.text = readHost()
+        label!.text = EESettings.readHost()
         
     }
     required init?(coder aDecoder: NSCoder) {
@@ -79,7 +81,7 @@ class EESettings:UIView {
     func detectPan(recognizer:UIPanGestureRecognizer) {
         let translation  = recognizer.translationInView(self.superview!)
         
-        UIView.animateWithDuration(0.3) { () -> Void in
+        UIView.animateWithDuration(0.2) { () -> Void in
             self.center = CGPointMake(self.lastLocation.x + translation.x, self.lastLocation.y + translation.y)
         }
         

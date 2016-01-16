@@ -16,11 +16,30 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CyB-Di-xP2">
+                                <rect key="frame" x="20" y="285" width="560" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="queryButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kBr-tw-FEY"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="CyB-Di-xP2" secondAttribute="trailing" constant="20" id="4Wv-Mf-oYx"/>
+                            <constraint firstItem="CyB-Di-xP2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Hbg-Lp-uOW"/>
+                            <constraint firstItem="CyB-Di-xP2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="KnV-EJ-Vot"/>
+                            <constraint firstItem="CyB-Di-xP2" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="x6U-df-ERt"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="queryButton" destination="CyB-Di-xP2" id="fxp-gd-bwC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="280" y="258"/>
         </scene>
     </scenes>
 </document>
