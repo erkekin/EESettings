@@ -10,14 +10,16 @@ The force awakener.
 ### Usage 
 
 You'd better use this only in "Debug" mode. Don't ship your app with this.
+Then set the DEBUG symbol like told here: http://stackoverflow.com/a/30013587
 
-In any view controllers or AppDelegate's didFinishLaunchingWithOptions method, just add the following.
+In any view controller's viewDidAppear method, just add the following.
 This will create a blue view floating on your app. Like the chat heads of Facebook app.
 
-Then set the DEBUG symbol like told here: http://stackoverflow.com/a/30013587
 
 You are set.
 
 ```swift
- SettingHost.hostView()
+Preferences.setHostView()
 ```
+This floating blue view always stays on front so you're aware where your app requesting.
+Any contributions are welcome.
